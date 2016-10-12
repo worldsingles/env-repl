@@ -1,5 +1,5 @@
 (def project 'worldsingles/env-repl)
-(def version "0.1.0")
+(def version "0.1.1")
 
 (set-env! :resource-paths #{"src"}
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
@@ -10,8 +10,8 @@
  pom {:project     project
       :version     version
       :description "Start/stop REPLs based on environment variables."
-      :url         "https://github.com/worldsingles/env-repl"
-      :scm         {:url "https://github.com/worldsingles/env-repl"}
+      :url         "https://bitbucket.org/wsnetworks/env-repl"
+      :scm         {:url "https://bitbucket.org/wsnetworks/env-repl"}
       :license     {"Eclipse Public License"
                     "http://www.eclipse.org/legal/epl-v10.html"}})
 
