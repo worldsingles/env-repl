@@ -4,6 +4,8 @@ A Component that will start/stop REPL servers based on environment variables.
 
 ## Usage
 
+Clojars: https://clojars.org/worldsingles/env-repl
+
 Leiningen / Boot Dependency:
 
 ``` clojure
