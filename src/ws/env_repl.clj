@@ -73,22 +73,22 @@
   component/Lifecycle
 
   (start [this]
-    (let [dev-server (or (:dev (:servers this))
+    (let [dev-server (or (:dev servers)
                          (when-let [dev-repl-port (some-> (System/getenv "DEV_REPL_PORT")
                                                           Long/parseLong)]
                            (future ; because this is slow to startup...
                              (start-cider-nrepl dev-repl-port))))
-          socket-svr (or (:socket (:servers this))
+          socket-svr (or (:socket servers)
                          (when-let [repl-port (some-> (System/getenv "REPL_PORT")
                                                       Long/parseLong)]
-                           (start-socket-repl repl-port (:repl-name this))))]
+                           (start-socket-repl repl-port repl-name)))]
       (assoc this :servers {:dev dev-server :socket socket-svr})))
 
   (stop [this]
-    (when-let [dev-server (:dev (:servers this))]
+    (when-let [dev-server (:dev servers)]
       (stop-cider-nrepl @dev-server))
-    (when (:socket (:servers this))
-      (stop-socket-repl (:repl-name this)))
+    (when (:socket servers)
+      (stop-socket-repl repl-name))
     (assoc this :servers nil)))
 
 (defn system

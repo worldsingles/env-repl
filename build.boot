@@ -1,5 +1,5 @@
 (def project 'worldsingles/env-repl)
-(def version "0.1.1")
+(def version "0.1.2")
 
 (set-env! :resource-paths #{"src"}
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
@@ -23,7 +23,7 @@
 (defn cider-deps
   "Return current CIDER dependencies."
   []
-  '[[cider/cider-nrepl "0.13.0"]
+  '[[cider/cider-nrepl "0.14.0"]
     [refactor-nrepl    "2.2.0"]])
 
 (deftask with-cider
