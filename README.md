@@ -9,7 +9,7 @@ Clojars: https://clojars.org/worldsingles/env-repl
 Leiningen / Boot Dependency:
 
 ``` clojure
-[worldsingles/env-repl "0.1.0"]
+[worldsingles/env-repl "0.1.2"]
 ```
 
 Start the REPL with CIDER dependencies, and environment variables defining the PORTs on which you want to run REPL:
