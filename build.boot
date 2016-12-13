@@ -3,7 +3,7 @@
 
 (set-env! :resource-paths #{"src"}
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                            [com.stuartsierra/component "0.3.1"
+                            [com.stuartsierra/component "0.3.2"
                              :exclusions [org.clojure/clojure]]])
 
 (task-options!
