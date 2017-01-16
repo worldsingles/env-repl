@@ -1,14 +1,14 @@
-;; copyright (c) 2016 world singles llc
+;; copyright (c) 2016-2017 world singles llc
 
 (ns ws.env-repl
   "A Component that will start/stop REPL servers based on environment variables.
 
   REPL_PORT - if set, start a Socket REPL server on this port
 
-  DEV_REPL_PORT - if set, start a CIDER-enabled nREPL server on this port
+  DEV_REPL_PORT - if set, start an optionally CIDER-enabled nREPL server on this port
 
   The latter requires that cider/cider-nrepl and refactor-nrepl are on the
-  classpath. They are required at runtime.
+  classpath. They are require'd at runtime.
 
   (env-repl/system) will return a Component; calling start on it will cause REPL
   servers to be started for each of the above environment variables, if set;
@@ -21,35 +21,41 @@
             [com.stuartsierra.component :as component]))
 
 (defn start-cider-nrepl
-  "Given a port number, start a CIDER-enabled nREPL server.
+  "Given a port number, start an optionally CIDER-enabled nREPL server.
   Returns the server (so it can be stopped later)."
   [dev-repl-port]
   (try
-    (println (str "Starting CIDER nREPL server on port " dev-repl-port "...\n"))
+    (println (str "Starting nREPL server on port " dev-repl-port "...\n"))
     (require '[clojure.tools.nrepl.server :as nrepl])
-    (require 'cider.nrepl)
-    (require 'refactor-nrepl.middleware)
-    (let [cider-mw (deref (resolve 'cider.nrepl/cider-middleware))
-          refactor-mw ['refactor-nrepl.middleware/wrap-refactor]
+    (try (require 'cider.nrepl) (catch Exception _))
+    (try (require 'refactor-nrepl.middleware) (catch Exception _))
+    (let [cider-mw (resolve 'cider.nrepl/cider-middleware)
+          cider-mw (when cider-mw
+                     (println "...including CIDER middleware...\n")
+                     (map resolve (deref cider-mw)))
+          refactor-mw (resolve 'refactor-nrepl.middleware/wrap-refactor)
+          refactor-mw (when refactor-mw
+                        (println "...including refactor-nrepl middleware...\n")
+                        [refactor-mw])
           handler (apply (resolve 'nrepl/default-handler)
-                         (map resolve (concat cider-mw refactor-mw)))
+                         (concat cider-mw refactor-mw))
           server ((resolve 'nrepl/start-server)
                   :port dev-repl-port :handler handler)]
-      (println (str "...CIDER nREPL server ready on port " dev-repl-port "\n"))
+      (println (str "...nREPL server ready on port " dev-repl-port "\n"))
       server)
     (catch Exception e
-      (println "Failed to start CIDER nREPL server\n" e))))
+      (println "Failed to start nREPL server\n" e))))
 
 (defn stop-cider-nrepl
   "Given an nREPL server, stop it."
   [server]
   (try
-    (println "Stopping CIDER nREPL server...\n")
+    (println "Stopping nREPL server...\n")
     (require '[clojure.tools.nrepl.server :as nrepl])
     ((resolve 'nrepl/stop-server) server)
     (println "...stopped\n")
     (catch Exception e
-      (println "Failed to stop CIDER nREPL server\n" e))))
+      (println "Failed to stop nREPL server\n" e))))
 
 (defn start-socket-repl
   "Given a port number and a name, start a Socket REPL server.

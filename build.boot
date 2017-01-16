@@ -1,9 +1,9 @@
 (def project 'worldsingles/env-repl)
-(def version "0.1.2")
+(def version "0.2.0")
 
 (set-env! :resource-paths #{"src"}
           :dependencies   '[[org.clojure/clojure "1.8.0" :scope "provided"]
-                            [com.stuartsierra/component "0.3.1"
+                            [com.stuartsierra/component "0.3.2"
                              :exclusions [org.clojure/clojure]]])
 
 (task-options!
