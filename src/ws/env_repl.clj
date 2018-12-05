@@ -1,4 +1,4 @@
-;; copyright (c) 2016-2018 world singles llc
+;; copyright (c) 2016-2018 world singles networks llc
 
 (ns ws.env-repl
   "A Component that will start/stop REPL servers based on environment variables.

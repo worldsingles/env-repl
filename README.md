@@ -50,6 +50,6 @@ REPL_PORT=54321 java -jar path/to/my-uberjar-0.1.0.jar
 
 ## License
 
-Copyright © 2016-2018 World Singles llc
+Copyright © 2016-2018 [World Singles Networks llc](https://worldsinglesnetworks.com/).
 
 Distributed under the Eclipse Public License version 1.0.
