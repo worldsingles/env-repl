@@ -1,4 +1,4 @@
-# env-repl [![Dependencies Status](https://versions.deps.co/worldsingles/env-repl/status.svg)](https://versions.deps.co/worldsingles/env-repl)[![Clojars Project](http://clojars.org/worldsingles/env-repl/latest-version.svg)](http://clojars.org/worldsingles/env-repl)
+# env-repl [![Clojars Project](http://clojars.org/worldsingles/env-repl/latest-version.svg)](http://clojars.org/worldsingles/env-repl)
 
 
 A Component that will start/stop REPL servers based on environment variables.
