@@ -1,4 +1,4 @@
-;; copyright (c) 2016-2017 world singles llc
+;; copyright (c) 2016-2018 world singles llc
 
 (ns ws.env-repl
   "A Component that will start/stop REPL servers based on environment variables.
@@ -26,7 +26,10 @@
   [dev-repl-port]
   (try
     (println (str "Starting nREPL server on port " dev-repl-port "...\n"))
-    (require '[clojure.tools.nrepl.server :as nrepl])
+    (try
+      (require '[nrepl.server :as nrepl])
+      (catch Exception _
+        (require '[clojure.tools.nrepl.server :as nrepl])))
     (try (require 'cider.nrepl) (catch Exception _))
     (try (require 'refactor-nrepl.middleware) (catch Exception _))
     (let [cider-mw (resolve 'cider.nrepl/cider-middleware)
@@ -51,7 +54,10 @@
   [server]
   (try
     (println "Stopping nREPL server...\n")
-    (require '[clojure.tools.nrepl.server :as nrepl])
+    (try
+      (require '[nrepl.server :as nrepl])
+      (catch Exception _
+        (require '[clojure.tools.nrepl.server :as nrepl])))
     ((resolve 'nrepl/stop-server) server)
     (println "...stopped\n")
     (catch Exception e

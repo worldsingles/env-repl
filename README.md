@@ -9,7 +9,7 @@ Clojars: https://clojars.org/worldsingles/env-repl
 Leiningen / Boot Dependency:
 
 ``` clojure
-[worldsingles/env-repl "0.1.2"]
+[worldsingles/env-repl "0.2.1"]
 ```
 
 Start the REPL with CIDER dependencies (if available), and environment variables defining the PORTs on which you want to run REPL:
@@ -44,6 +44,6 @@ REPL_PORT=54321 java -jar path/to/my-uberjar-0.1.0.jar
 
 ## License
 
-Copyright © 2016-2017 World Singles llc
+Copyright © 2016-2018 World Singles llc
 
 Distributed under the Eclipse Public License version 1.0.
