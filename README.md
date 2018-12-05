@@ -10,16 +10,16 @@ Clojars: https://clojars.org/worldsingles/env-repl
 Leiningen / Boot Dependency:
 
 ``` clojure
-[worldsingles/env-repl "0.2.1"]
+[worldsingles/env-repl "0.2.2"]
 ```
 
-Start the REPL with CIDER dependencies (if available), and environment variables defining the PORTs on which you want to run REPL:
+`deps.edn`:
 
-``` shell
-DEV_REPL_PORT=6100 REPL_PORT=7100 boot -d cider/cider-nrepl -d refactor-nrepl repl
+``` clojure
+clj -Sdeps '{:deps {worldsingles/env-repl {:mvn/version "0.2.2"}}}'
 ```
 
-or:
+Start the REPL with CIDER dependencies (if available), and environment variables defining the PORTs on which you want to run REPL. For example:
 
 ``` shell
 DEV_REPL_PORT=6100 REPL_PORT=7100 clj -A:cider
