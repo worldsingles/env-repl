@@ -18,6 +18,12 @@ Start the REPL with CIDER dependencies (if available), and environment variables
 DEV_REPL_PORT=6100 REPL_PORT=7100 boot -d cider/cider-nrepl -d refactor-nrepl repl
 ```
 
+or:
+
+``` shell
+DEV_REPL_PORT=6100 REPL_PORT=7100 clj -A:cider
+```
+
 Build and start the Component in the REPL:
 
 ``` clojure
